@@ -17,10 +17,10 @@ import (
 )
 
 // readLines() reads each line from the supplied io.Reader and sends each
-// to the supplied write-only channel.
+// to the returned read-only channel.
 //
 // once EOF is reached, it closes the channel.
-func readLines(r io.Reader, j int) chan string {
+func readLines(r io.Reader, j int) <-chan string {
 	rc := make(chan string, j)
 	go func() {
 		line := bufio.NewScanner(r)
